@@ -22,8 +22,8 @@ class Film{
 	}
 
 	public function save(){
-		$conn = DbConnect::getConnection();
-		$query = "INSERT INTO films (id, title, year, duration, certificate_id) VALUES (NULL, :title, :year, :duration, :certId)";
+    $conn = DbConnect::getConnection();
+    $query = "INSERT INTO films (id, title, year, duration, certificate_id) VALUES (NULL, :title, :year, :duration, :certId)";
 	  $stmt = $conn->prepare($query);
 	  $stmt->bindValue(':title', $this->title);
 	  $stmt->bindValue(':year', $this->year);
@@ -32,12 +32,7 @@ class Film{
 	  $stmt->execute();
 		$this->id = $conn->lastInsertId();
 	}
-	public function delete(){
-		$conn = DbConnect::getConnection();
-		$stmt = $conn->prepare("DELETE FROM films WHERE films.id = :id");
-		$stmt->bindValue(':id',$this->id);
-		$stmt->execute();
-	}
+
 	public static function find($id)
 	{
 		$conn = DbConnect::getConnection();
@@ -47,18 +42,6 @@ class Film{
 		$row = $stmt->fetch();
 		$filmObject = Film::makeFilmObject($row);
 		return $filmObject;
-	}
-	public static function getAllFilms()
-	{
-		$conn = DbConnect::getConnection();
-		$query = "SELECT * FROM films";
-		$resultset = $conn->query($query);
-		$films=[];
-		while($row = $resultset->fetch()){
-			$filmObject = Film::makeFilmObject($row);
-			$films[] = $filmObject;
-		}
-		return $films;
 	}
 
 	private static function makeFilmObject($row)

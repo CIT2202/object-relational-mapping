@@ -111,7 +111,7 @@ echo "<p>{$film->title} is {$film->getAge()} years old</p>";
 
 What is nice about the Active Record pattern is that all the complexity for working with the database is encapsulated in the domain class (in this example Film). It is quite intuitive to call methods such as *save()* and *update()* on the actual object we want to save or update, without having to involve any other objects or functions.
 
-The Active Record pattern is commonly used in MVC frameworks e.g. Laravel, Ruby on Rails to provide ORM e.g. see https://laravel.com/docs/eloquent for examples that look similar to the above one. 
+The Active Record pattern is commonly used in MVC frameworks e.g. Laravel, Ruby on Rails to provide ORM e.g. see https://laravel.com/docs/eloquent for examples that look similar to the above one.
 
 There are also disadvantages to the Active record pattern. It tends to make our domain classes large and overly complex. One of the key principles of OOP is the 'single responsibility principle'. Each class should be responsible for a single part of the application’s functionality
 (https://en.wikipedia.org/wiki/Single_responsibility_principle). The Active Record pattern gives domain classes too much responsibility.
@@ -172,6 +172,18 @@ The DataMapper pattern isn't quite as neat to use as the Active Record pattern, 
 
 ## Associations between classes
 We know how to implement relationships between classes in a database i.e foreign keys, junction tables etc. How do we do this in PHP code?
+
+The practical work in this repository uses foreign keys as simple properties e.g.
+
+```php
+$this->certId=$certId;
+```
+Really we want to have access to the full details for the certificate e.g.
+
+```php
+echo $film->certificate->description;
+```
+The following explains how we might do this. 
 
 ### One-to-many relationships
 In our example, there is a one-to-many relationship between Certificate and Film. To implement this in PHP:

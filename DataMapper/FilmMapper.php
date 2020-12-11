@@ -10,7 +10,6 @@ class FilmMapper{
 		$filmObject=$this->makeFilmObject($row);
 		return $filmObject;
 	}
-
 	public function save($film)
 	{
 		$conn = DbConnect::getConnection();
@@ -22,26 +21,6 @@ class FilmMapper{
 		$stmt->bindValue(':certId', $film->certId);
 		$stmt->execute();
 		$film->id = $conn->lastInsertId();
-	}
-
-	public function delete($film){
-		$conn = DbConnect::getConnection();
-		$stmt = $conn->prepare("DELETE FROM films WHERE films.id = :id");
-		$stmt->bindValue(':id',$film->id);
-		$stmt->execute();
-	}
-
-	public function getAllFilms()
-	{
-		$conn = DbConnect::getConnection();
-		$query = "SELECT * FROM films";
-		$resultset = $conn->query($query);
-		$films=[];
-		while($row = $resultset->fetch()){
-			$filmObject = $this->makeFilmObject($row);
-			$films[] = $filmObject;
-		}
-		return $films;
 	}
 
 	private function makeFilmObject($row)
