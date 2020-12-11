@@ -4,11 +4,13 @@ class Film {
 	public $title;
 	public $year;
 	public $duration;
-	
-	function __construct($title, $year, $duration){
+	public $certId;
+
+	function __construct($title, $year, $duration, $certId){
 		$this->title=$title;
 		$this->year=$year;
 		$this->duration=$duration;
+		$this->certId=$certId;
 	}
 
 	function getAge(){
