@@ -6,9 +6,9 @@ class DbConnect{
         if(!self::$conn)
         {
             try{
-                self::$conn = new PDO('mysql:host=localhost;dbname=u0123456', 'u0123456', '01jan96');
+                self::$conn = new PDO('mysql:host=localhost;dbname=cit2202', 'cit2202', 'letmein');
              }
-             catch (PDOException $exception) 
+             catch (PDOException $exception)
              {
                 echo "Oh no, there was a problem" . $exception->getMessage();
              }
@@ -23,4 +23,3 @@ class DbConnect{
         }
     }
 }
-
