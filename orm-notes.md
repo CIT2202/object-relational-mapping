@@ -176,14 +176,14 @@ We know how to implement relationships between classes in a database i.e foreign
 The practical work in this repository uses foreign keys as simple properties e.g.
 
 ```php
-$this->certId=$certId;
+echo $film->certId;
 ```
 Really we want to have access to the full details for the certificate e.g.
 
 ```php
 echo $film->certificate->description;
 ```
-The following explains how we might do this. 
+The following explains how we might do this.
 
 ### One-to-many relationships
 In our example, there is a one-to-many relationship between Certificate and Film. To implement this in PHP:
