@@ -16,7 +16,7 @@ $filmMapper->save($film); //inserts a row into a database
 //get all the films
 $films = $filmMapper->getAllFilms();
 foreach($films as $film){
-	echo "<p>".$film->title." is ".$film->getAge()." years old</p>";
+	echo "<p>{$film->title} is $film->getAge()} years old</p>";
 }
 
 //delete a film
