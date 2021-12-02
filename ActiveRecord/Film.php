@@ -22,14 +22,14 @@ class Film{
 	}
 
 	public function save(){
-    $conn = DbConnect::getConnection();
-    $query = "INSERT INTO films (id, title, year, duration, certificate_id) VALUES (NULL, :title, :year, :duration, :certId)";
-	  $stmt = $conn->prepare($query);
-	  $stmt->bindValue(':title', $this->title);
-	  $stmt->bindValue(':year', $this->year);
-	  $stmt->bindValue(':duration', $this->duration);
-	  $stmt->bindValue(':certId', $this->certId);
-	  $stmt->execute();
+                $conn = DbConnect::getConnection();
+                $query = "INSERT INTO films (id, title, year, duration, certificate_id) VALUES (NULL, :title, :year, :duration, :certId)";
+	        $stmt = $conn->prepare($query);
+	        $stmt->bindValue(':title', $this->title);
+	        $stmt->bindValue(':year', $this->year);
+	        $stmt->bindValue(':duration', $this->duration);
+	        $stmt->bindValue(':certId', $this->certId);
+	        $stmt->execute();
 		$this->id = $conn->lastInsertId();
 	}
 
